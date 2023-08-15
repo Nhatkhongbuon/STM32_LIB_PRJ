@@ -2,7 +2,7 @@
  * RingBuffer.h
  *
  *  Created on: Aug 15, 2023
- *      Author: Admin
+ *      Author: Nhatkhongbuon
  */
 
 #ifndef USER_RINGBUFFER_H_
@@ -18,12 +18,12 @@ typedef struct
 
 typedef struct
 {
-	char *buf;
-	unsigned char sizeOfElm;
-	unsigned char size; // MAX size
-	unsigned char head;
-	unsigned char tail;
-	unsigned char count;
+	char *buf;							// pointer to manage address of cBuffer
+	unsigned char sizeOfElm;			// size of buffer
+	unsigned char size; 				// size of an element in buffer
+	unsigned char head;					// pointer head
+	unsigned char tail;					// pointer tail
+	unsigned char count;				// variable count
 } ringBufferTypedef;
 
 void ringBufferInit(ringBufferTypedef *cBuffer, void *address, unsigned char sizeOfElm, unsigned char size);
