@@ -18,7 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include "DS1307_Lib.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -41,7 +41,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c1;
-
+DS1307_Name DS1307;
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -75,7 +75,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  DS1307_Init(&DS1307, &hi2c1);
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -89,14 +89,23 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-
+  DS1307_SetTime(&DS1307, 20, 15, 00);
+  DS1307_SetDate(&DS1307, 1, 3, 10, 20);
+  int a = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
+	  DS1307_GetDate(&DS1307);
+
+	  DS1307_GetTime(&DS1307);
+
+	  a++;
+
+
+	/* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }

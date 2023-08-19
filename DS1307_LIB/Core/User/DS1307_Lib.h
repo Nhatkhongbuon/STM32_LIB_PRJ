@@ -8,10 +8,7 @@
 #ifndef USER_DS1307_LIB_H_
 #define USER_DS1307_LIB_H_
 
-const byte DS1307_ADDRESS = 0x68; //Address of DS1307
-const byte numberOfBits = 7; //Number of bits read from DS1307
-char Time[] = "Time:  :  :  ";
-char Calendar[] = "DATE:  :  :20  ";
+#include "stm32f1xx_hal.h"
 
 typedef struct
 {
@@ -29,6 +26,10 @@ typedef struct
 	uint8_t Year;
 } DS1307_Name;
 
-
+void DS1307_Init(DS1307_Name* DS1307, I2C_HandleTypeDef* I2CInit);
+void DS1307_SetTime(DS1307_Name* DS1307, uint8_t Hour, uint8_t Min, uint8_t Sec);
+void DS1307_GetTime(DS1307_Name* DS1307);
+void DS1307_SetDate(DS1307_Name* DS1307, uint8_t Day, uint8_t Date, uint8_t Month, uint8_t Year);
+void DS1307_GetDate(DS1307_Name* DS1307);
 
 #endif /* USER_DS1307_LIB_H_ */
