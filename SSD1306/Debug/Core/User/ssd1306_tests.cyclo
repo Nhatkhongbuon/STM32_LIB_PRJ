@@ -1,0 +1,12 @@
+ssd1306_tests.c:1077:6:ssd1306_TestBorder	9
+ssd1306_tests.c:1103:6:ssd1306_TestFonts1	1
+ssd1306_tests.c:1136:6:ssd1306_TestFonts2	1
+ssd1306_tests.c:1158:6:ssd1306_TestFPS	2
+ssd1306_tests.c:1196:6:ssd1306_TestLine	1
+ssd1306_tests.c:1204:6:ssd1306_TestRectangle	2
+ssd1306_tests.c:1214:6:ssd1306_TestRectangleFill	1
+ssd1306_tests.c:1222:6:ssd1306_TestCircle	3
+ssd1306_tests.c:1237:6:ssd1306_TestArc	1
+ssd1306_tests.c:1244:6:ssd1306_TestPolyline	1
+ssd1306_tests.c:1261:6:ssd1306_TestDrawBitmap	2
+ssd1306_tests.c:1273:6:ssd1306_TestAll	1
