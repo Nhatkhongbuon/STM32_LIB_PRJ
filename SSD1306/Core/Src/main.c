@@ -97,7 +97,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  ssd1306_Init();
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -113,30 +113,32 @@ int main(void)
   MX_I2C1_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-//  ssd1306_Fill(Black);
-//
-//  ssd1306_SetCursor(24, 17);
-//  ssd1306_WriteString("DECIBEL", Font_11x18, White);
-//  ssd1306_SetCursor(33, 37);
-//  ssd1306_WriteString("METER", Font_11x18, White);
-//  ssd1306_UpdateScreen();
-//  HAL_Delay(2000);
-//
-//  ssd1306_Fill(Black);
-//  ssd1306_Line(0, 12, 127, 12, White);
-//  ssd1306_DrawRectangle(96, 2, 124, 9, White);
-//  ssd1306_FillRectangle(98, 4, 122, 7, White);
-//  ssd1306_DrawPixel(94, 4, White);
-//  ssd1306_DrawPixel(94, 5, White);
-//  ssd1306_DrawPixel(94, 6, White);
-//  ssd1306_DrawPixel(94, 7, White);
-//
-//  ssd1306_DrawRectangle(14, 19, 114, 31, White);
-//  ssd1306_FillRectangle(16, 21, 112, 29, White);
-//
-//  ssd1306_SetCursor(2, 2);
-//  ssd1306_WriteString("THCS Que Nham", Font_6x8, White);
-//  ssd1306_UpdateScreen();
+
+  ssd1306_Init();
+  ssd1306_Fill(Black);
+
+  ssd1306_SetCursor(24, 17);
+  ssd1306_WriteString("DECIBEL", Font_11x18, White);
+  ssd1306_SetCursor(33, 37);
+  ssd1306_WriteString("METER", Font_11x18, White);
+  ssd1306_UpdateScreen();
+  HAL_Delay(2000);
+
+  ssd1306_Fill(Black);
+  ssd1306_Line(0, 12, 127, 12, White);
+  ssd1306_DrawRectangle(96, 2, 124, 9, White);
+  ssd1306_FillRectangle(98, 4, 122, 7, White);
+  ssd1306_DrawPixel(94, 4, White);
+  ssd1306_DrawPixel(94, 5, White);
+  ssd1306_DrawPixel(94, 6, White);
+  ssd1306_DrawPixel(94, 7, White);
+
+  ssd1306_DrawRectangle(14, 19, 114, 31, White);
+  ssd1306_FillRectangle(16, 21, 112, 29, White);
+
+  ssd1306_SetCursor(2, 2);
+  ssd1306_WriteString("THCS Que Nham", Font_6x8, White);
+  ssd1306_UpdateScreen();
 
 
   /* USER CODE END 2 */
@@ -145,16 +147,15 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  HAL_ADC_Start_DMA(&hadc1, (uint32_t*)ADC_Value, 2);
-//	  HAL_Delay(50);
-//
-//	  sprintf(buffer, "%d", ADC_Value[1]);
-//
-//	  ssd1306_SetCursor(40, 37);
-//	  ssd1306_WriteString(buffer, Font_11x18, White);
-//	  ssd1306_UpdateScreen();
+	  HAL_ADC_Start_DMA(&hadc1, (uint32_t*)ADC_Value, 2);
+	  HAL_Delay(50);
 
-	  ssd1306_TestDrawBitmap();
+	  sprintf(buffer, "%d", ADC_Value[0]);
+
+	  ssd1306_SetCursor(40, 37);
+	  ssd1306_WriteString(buffer, Font_11x18, White);
+	  ssd1306_UpdateScreen();
+//	  ssd1306_TestDrawBitmap();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -318,12 +319,23 @@ static void MX_DMA_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 /* USER CODE BEGIN MX_GPIO_Init_1 */
 /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(Test_GPIO_Port, Test_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : Test_Pin */
+  GPIO_InitStruct.Pin = Test_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(Test_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */

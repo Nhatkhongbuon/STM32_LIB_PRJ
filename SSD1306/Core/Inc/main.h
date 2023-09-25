@@ -59,6 +59,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define Sensor_Pin GPIO_PIN_0
 #define Sensor_GPIO_Port GPIOA
+#define Test_Pin GPIO_PIN_1
+#define Test_GPIO_Port GPIOA
 #define Battery_Pin GPIO_PIN_5
 #define Battery_GPIO_Port GPIOA
 
